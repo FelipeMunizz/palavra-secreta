@@ -5,6 +5,7 @@ export const wordsList = {
   computador: ["Mouse", "Teclado", "Monitor", "Gabinete"],
   programação: ["Linguagem", "Framework", "JavaScript", "React"],
   alimento: ["Arroz", "Feijão", "Carne", "Leite", "Ovo"],
-  pais:["Brasil", "Rússia", "Portugal", "Marrocos", "França"],
-  time: ["Corinthians", "Flamengo", "Palmeiras", "Santos"]
+  pais:["Brasil", "Rússia", "Portugal", "Marrocos", "França", "Argentina"],
+  time: ["Corinthians", "Flamengo", "Palmeiras", "Santos"],
+  instrumentos: ["Bateria", "Zabumba", "Guitarra", "Baixo", "Teclado", "Cavaco"]
 };
