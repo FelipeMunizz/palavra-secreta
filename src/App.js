@@ -18,6 +18,8 @@ const stages = [
   {id: 3, name:"end"}
 ]
 
+const guessesQty = 3
+
 function App() {
   const [gameStage, setGameStage] = useState(stages[0].name)
   const [words] = useState(wordsList)
@@ -26,7 +28,7 @@ function App() {
   const [letters, setLetters] = useState([])
   const [guessedLetters, setGuessedLetters] = useState([])
   const [wronLetters, setWronLetters] = useState([])
-  const [guesses, setGuesses] = useState(3)
+  const [guesses, setGuesses] = useState(guessesQty)
   const [score, setScore] = useState(0)
 
   const pickWordAndCategory = () => {
@@ -73,11 +75,29 @@ function App() {
         ...actualWronLetters,
         normalizeLetter
       ])
+
+      setGuesses((actualGuesses) => actualGuesses - 1)
     }
   }
 
+  const clearLetterStates = () =>{
+    setGuessedLetters([])
+    setWronLetters([])
+  }
+
+  useEffect(() => {
+    if(guesses <= 0){
+      clearLetterStates()
+
+      setGameStage(stages[2].name)
+    }
+  }, [guesses])
+
   //Reiniciar
   const retry = () =>{
+    setScore(0)
+    setGuesses(guessesQty)
+
     setGameStage(stages[0].name)
   }
 
@@ -95,7 +115,7 @@ function App() {
       guesses = {guesses}
       score = {score}
       />)}
-      {gameStage === 'end' && <GameOver retry={retry} />}
+      {gameStage === 'end' && <GameOver retry={retry} pickedWord = {pickedWord} />}
     </div>
   );
 }
